@@ -4,6 +4,7 @@ const startBtn = document.getElementById("starts");
 const countdownOverlay = document.getElementById("countdown");
 const resultModal = document.getElementById("result");
 const modalBackground = document.getElementById("modal-background");
+ 
 
 // variables
 let userText = "";
@@ -100,17 +101,24 @@ const closeModal = () => {
 };
 
 const start = () => {
+ 
   // If already started, do not start again
-  if (startTime) return;
+  if (startTime) {
+    // console.log(count);
+    return;
+  }
 
   let count = 3;
-  countdownOverlay.style.display = "flex";
+  
 
   const startCountdown = setInterval(() => {
+  
+     
+     
     countdownOverlay.innerHTML = `<h1>${count}</h1>`;
 
     // finished timer
-    if (count == 0) {
+    if (count === 0) {
       // -------------- START TYPING -----------------
       document.addEventListener("keydown", typeController);
       countdownOverlay.style.display = "none";
@@ -118,6 +126,10 @@ const start = () => {
 
       clearInterval(startCountdown);
       startTime = new Date().getTime();
+       
+    }
+    else {
+      countdownOverlay.style.display = "flex";
     }
     count--;
   }, 1000);
